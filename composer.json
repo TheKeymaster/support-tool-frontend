@@ -1,0 +1,13 @@
+{
+    "name": "thekeymaster/support-tool-frontend",
+    "require": {
+        "twig/twig": "^2.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dominik Brader",
+            "email": "d.brader@findologic.com"
+        }
+    ]
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Video-Downloader</title>
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link rel="stylesheet" href="/web/css/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+<nav class="light-green lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Supporttool</a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="/"><i class="material-icons">home</i></a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+            <li><a href="/"><i class="material-icons">home</i>Home</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+</nav>
+<div class="section no-pad-bot card" id="index-banner">
+    <div class="container">
+        <br><br>
+        <h1 class="header center orange-text">Einloggen</h1>
+        <form method="post" id="registerForm" action="">
+            <div class="row center">
+                <div class="input-field">
+                    <i class="material-icons prefix">mail</i>
+                    <input id="email" type="email" class="validate" name="email">
+                    <label for="email">E-Mail Adresse</label>
+                    <span class="helper-text" data-error="Bitte gib eine gültige E-Mail ein."
+                          data-success="E-Mail ist gültig."></span>
+                </div>
+            </div>
+            <div class="row center">
+                <div class="input-field">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <input id="password" type="password" class="validate" name="password">
+                    <label for="password">Passwort</label>
+                    <span class="helper-text" data-error="Bitte gib ein gültiges Passwort ein."
+                          data-success="Passwort ist gültig."></span>
+                </div>
+            </div>
+            <div class="row center">
+                <button class="btn-large waves-effect waves-light orange" type="submit" name="action">Einloggen<i
+                            class="material-icons prefix right">account_circle</i>
+                </button>
+            </div>
+        </form>
+        <br><br>
+    </div>
+</div>
+
+<footer class="page-footer grey">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Generelle Information</h5>
+                <p class="grey-text text-lighten-4">Logge dich ein um zu deiner Ticketansicht zu gelangen.
+                    Ein Suppoortmitarbeiter wird versuchen dir schnellstmöglich weiterzuhelfen.</p>
+
+
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">Einstellungen</h5>
+                <ul>
+                    <li><a class="white-text" href="#!">Nicht Verfügbar</a></li>
+                    <li><a class="white-text" href="#!"></a></li>
+                    <li><a class="white-text" href="#!"></a></li>
+                    <li><a class="white-text" href="#!"></a></li>
+                </ul>
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a class="white-text" href="https://www.brader.co.at">Website</a></li>
+                    <li><a class="white-text" href="http://plex.brader.co.at">Plex Mediathek</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            Made by <a class="orange-text text-lighten-3" href="https://www.brader.co.at">Dominik Brader</a> and Philipp Schwaighofer
+        </div>
+    </div>
+</footer>
+
+<div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>Download abbrechen</h4>
+        <p>Bist du sicher dass du den Download abbrechen möchtest? Du kannst diese Aktion nicht rückgängig machen!</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="btn modal-close waves-effect">Schließen</a>
+        <a href="#!" class="btn modal-close waves-effect red cancel-download">
+            Download Abbrechen<i class="material-icons prefix right">cancel</i>
+        </a>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+<script src="https://materializecss.com/templates/starter-template/js/init.js"></script>
+<script src="/web/js/scripts.js"></script>
+</body>
+
+</html>

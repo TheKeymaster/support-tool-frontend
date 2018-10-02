@@ -1,0 +1,17 @@
+.light-green.lighten-1 {
+  background-color: cornflowerblue !important; }
+
+.grey {
+  background-color: #808585 !important; }
+
+.orange {
+  background-color: #ff974c !important; }
+
+.orange-text {
+  color: #ff974c !important; }
+
+div#index-banner {
+  width: 50%;
+  margin: 7% auto; }
+
+/*# sourceMappingURL=styles.css.map */
