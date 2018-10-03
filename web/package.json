@@ -1,0 +1,24 @@
+{
+  "name": "support-tool-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "clipboard": "^2.0.1",
+    "mustache": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thekeymaster/support-tool-frontend.git"
+  },
+  "author": "thekeymaster",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thekeymaster/support-tool-frontend/issues"
+  },
+  "homepage": "https://github.com/thekeymaster/support-tool-frontend#readme"
+}

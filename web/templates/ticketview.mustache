@@ -1,6 +1,18 @@
-<!DOCTYPE HTML>
-<html>
-<body>
-Hello {{ name }}!
-</body>
-</html>
+<h1 class="header center orange-text">Tickets</h1>
+<div class="card">
+    <div class="collection">
+        {{#tickets}}
+            <li class="collection-item avatar">
+                <div class="circle light-green lighten-1">
+                    <h4>{{id}}</h4>
+                </div>
+                <span class="title bold">{{title}}</span>
+                <p>Ticketnummer: {{id}} <i onclick="sendCopyToast()" data-clipboard-text="{{id}}" data-position="right" data-tooltip="Ticketnummer kopieren" class="material-icons copy tooltipped rounded">content_copy</i></p>
+                <div class="chip {{color}}">
+                    {{status}}
+                </div>
+                <a href="/Ticket/{{id}}" class="secondary-content">Ticket öffnen <i class="material-icons">send</i></a>
+            </li>
+        {{/tickets}}
+    </div>
+</div>

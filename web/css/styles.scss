@@ -10,7 +10,60 @@
 .orange-text {
     color: rgb(255, 151, 76) !important;
 }
+div .card {
+    width: 80%;
+    margin: 7% auto;
+}
 div#index-banner {
     width: 50%;
-    margin: 7% auto;
+}
+
+.collection .collection-item.avatar {
+    list-style: none;
+    padding-left: 100px;
+
+    .circle h4 {
+        margin-top: 12px;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .circle.light-green.lighten-1 {
+        width: 64px !important;
+        height: 64px !important;
+    }
+
+    i.material-icons.copy.tooltipped {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .chip {
+        height: 20px;
+        line-height: 20px;
+        margin-top: 5px;
+        margin-bottom: 0;
+        &.green, &.blue {
+            color: #ffffff;
+        }
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .copy:hover {
+        cursor: pointer;
+    }
+
+    .secondary-content {
+        height: 100%;
+        top: 0 !important;
+        line-height: 6;
+        i {
+            display: inline-flex;
+            vertical-align: middle;
+            margin-bottom: 3px;
+        }
+    }
 }
