@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Video-Downloader</title>
+    <title>Supporttool</title>
     <meta name="author" content="">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,36 +27,38 @@
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
 </nav>
-<div class="section no-pad-bot card" id="index-banner">
-    <div class="container">
-        <br><br>
-        <h1 class="header center orange-text">Einloggen</h1>
-        <form method="post" id="registerForm" action="">
-            <div class="row center">
-                <div class="input-field">
-                    <i class="material-icons prefix">mail</i>
-                    <input id="email" type="email" class="validate" name="email">
-                    <label for="email">E-Mail Adresse</label>
-                    <span class="helper-text" data-error="Bitte gib eine gültige E-Mail ein."
-                          data-success="E-Mail ist gültig."></span>
+<div class="main">
+    <div class="section no-pad-bot card" id="index-banner">
+        <div class="container">
+            <br><br>
+            <h1 class="header center orange-text">Einloggen</h1>
+            <form method="post" id="registerForm" action="">
+                <div class="row center">
+                    <div class="input-field">
+                        <i class="material-icons prefix">mail</i>
+                        <input id="email" type="email" class="validate" name="email">
+                        <label for="email">E-Mail Adresse</label>
+                        <span class="helper-text" data-error="Bitte gib eine gültige E-Mail ein."
+                              data-success="E-Mail ist gültig."></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row center">
-                <div class="input-field">
-                    <i class="material-icons prefix">vpn_key</i>
-                    <input id="password" type="password" class="validate" name="password">
-                    <label for="password">Passwort</label>
-                    <span class="helper-text" data-error="Bitte gib ein gültiges Passwort ein."
-                          data-success="Passwort ist gültig."></span>
+                <div class="row center">
+                    <div class="input-field">
+                        <i class="material-icons prefix">vpn_key</i>
+                        <input id="password" type="password" class="validate" name="password">
+                        <label for="password">Passwort</label>
+                        <span class="helper-text" data-error="Bitte gib ein gültiges Passwort ein."
+                              data-success="Passwort ist gültig."></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row center">
-                <button class="btn-large waves-effect waves-light orange" type="submit" name="action">Einloggen<i
-                            class="material-icons prefix right">account_circle</i>
-                </button>
-            </div>
-        </form>
-        <br><br>
+                <div class="row center">
+                    <button class="btn-large waves-effect waves-light orange" type="submit" name="action">Einloggen<i
+                                class="material-icons prefix right">account_circle</i>
+                    </button>
+                </div>
+            </form>
+            <br><br>
+        </div>
     </div>
 </div>
 
@@ -73,7 +75,7 @@
             <div class="col l3 s12">
                 <h5 class="white-text">Einstellungen</h5>
                 <ul>
-                    <li><a class="white-text" href="#!">Nicht Verfügbar</a></li>
+                    <li><a class="white-text" href="#!">Logge dich ein!</a></li>
                     <li><a class="white-text" href="#!"></a></li>
                     <li><a class="white-text" href="#!"></a></li>
                     <li><a class="white-text" href="#!"></a></li>
@@ -82,15 +84,14 @@
             <div class="col l3 s12">
                 <h5 class="white-text">Links</h5>
                 <ul>
-                    <li><a class="white-text" href="https://www.brader.co.at">Website</a></li>
-                    <li><a class="white-text" href="http://plex.brader.co.at">Plex Mediathek</a></li>
+                    <li><a class="white-text" href="/web/files/handbuch.pdf" target="_blank">Handbuch</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="footer-copyright">
         <div class="container">
-            Made by <a class="orange-text text-lighten-3" href="https://www.brader.co.at">Dominik Brader</a> and Philipp Schwaighofer
+            Made by <a class="orange-text text-lighten-3" href="https://www.brader.co.at">Dominik Brader</a> und Philipp Schwaighofer
         </div>
     </div>
 </footer>
@@ -111,6 +112,7 @@
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 <script src="https://materializecss.com/templates/starter-template/js/init.js"></script>
+<script src="/web/node_modules/mustache/mustache.min.js"></script>
 <script src="/web/js/scripts.js"></script>
 </body>
 
