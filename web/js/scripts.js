@@ -69,5 +69,18 @@ function logOutAndGoToLoginPage() {
 }
 
 function loadTicketView() {
+    $.get('/web/templates/ticketview.mustache', function(template) {
+        var html = Mustache.render(template, {name: "Luke"});
+        document.querySelector('.main').innerHTML = html;
 
+        console.log(html);
+    });
 }
+
+(function($){
+    $(function(){
+
+        $('.sidenav').sidenav();
+
+    }); // end of document ready
+})(jQuery); // end of jQuery name space
