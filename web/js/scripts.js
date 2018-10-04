@@ -4,7 +4,7 @@
 const API_URL = "http://api.dom.olo/src/api/Endpoints/";
 const GET_DIR = "get/";
 const POST_DIR = "post/";
-const TEMPLATE_DESTINATION = '/web/templates/';
+const TEMPLATE_DESTINATION = '/web/templates/views/';
 
 // ENDPOINTS
 const VALIDATE_USER_ENDPOINT = API_URL + POST_DIR + "uservalidate.php";
@@ -18,6 +18,7 @@ const PATHNAME_LOGIN = '/';
 const PATHNAME_TICKETS = '/Tickets/';
 
 var registerForm = document.getElementById('registerForm');
+var logoutButton = $('.logout-button');
 
 registerForm.action = VALIDATE_USER_ENDPOINT;
 
@@ -96,16 +97,25 @@ function loadViewByUrl() {
     } else {
         logOutAndLoadLoginPage();
     }
+    $('.main').css('opacity', 1);
 }
 
 function logOutAndLoadLoginPage() {
-    if (document.querySelectorAll('h1.header.center.orange-text').length === 0) {
+    if (document.querySelectorAll('h1.header.center.orange-text.login').length === 0) {
+        $.get(TEMPLATE_DESTINATION + 'loginview.mustache', function(template) {
+            document.querySelector('.main').innerHTML = Mustache.render(template, {});
+        });
+
         localStorage.removeItem('authkey');
-        window.location.pathname = '/';
+        logoutButton.css('display', 'none');
     }
 }
 
 function loadTicketView() {
+    logoutButton.css('display', 'block');
+    logoutButton.click(function () {
+        logOutAndLoadLoginPage();
+    });
     $.get(TEMPLATE_DESTINATION + 'ticketview.mustache', function(template) {
         var xhr = new XMLHttpRequest();
         var params = 'authkey=' + localStorage.getItem('authkey');

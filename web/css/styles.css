@@ -1,69 +1,60 @@
 .light-green.lighten-1 {
-  background-color: cornflowerblue !important;
-}
+  background-color: cornflowerblue !important; }
 
 .grey {
-  background-color: #808585 !important;
-}
+  background-color: #808585 !important; }
 
 .orange {
-  background-color: #ff974c !important;
-}
+  background-color: #ff974c !important; }
 
 .orange-text {
-  color: #ff974c !important;
-}
+  color: #ff974c !important; }
 
 div .card {
   width: 80%;
-  margin: 7% auto;
-}
+  margin: 7% auto; }
 
 div#index-banner {
-  width: 50%;
-}
+  width: 50%; }
+
+.logout-button {
+  transform: rotate(180deg); }
 
 .collection .collection-item.avatar {
   list-style: none;
-  padding-left: 100px;
-}
-.collection .collection-item.avatar .circle h4 {
-  margin-top: 12px;
-  text-align: center;
-  color: #ffffff;
-}
-.collection .collection-item.avatar .circle.light-green.lighten-1 {
-  width: 64px !important;
-  height: 64px !important;
-}
-.collection .collection-item.avatar i.material-icons.copy.tooltipped {
-  font-size: 14px;
-  font-weight: bold;
-}
-.collection .collection-item.avatar .chip {
-  height: 20px;
-  line-height: 20px;
-  margin-top: 5px;
-  margin-bottom: 0;
-}
-.collection .collection-item.avatar .chip.green, .collection .collection-item.avatar .chip.blue {
-  color: #ffffff;
-}
-.collection .collection-item.avatar .bold {
-  font-weight: bold;
-}
-.collection .collection-item.avatar .copy:hover {
-  cursor: pointer;
-}
-.collection .collection-item.avatar .secondary-content {
-  height: 100%;
-  top: 0 !important;
-  line-height: 6;
-}
-.collection .collection-item.avatar .secondary-content i {
-  display: inline-flex;
-  vertical-align: middle;
-  margin-bottom: 3px;
-}
+  padding-left: 100px; }
+  .collection .collection-item.avatar .circle h4 {
+    margin-top: 12px;
+    text-align: center;
+    color: #ffffff; }
+  .collection .collection-item.avatar .circle.light-green.lighten-1 {
+    width: 64px !important;
+    height: 64px !important; }
+  .collection .collection-item.avatar i.material-icons.copy.tooltipped {
+    font-size: 14px;
+    font-weight: bold; }
+  .collection .collection-item.avatar .chip {
+    height: 20px;
+    line-height: 20px;
+    margin-top: 5px;
+    margin-bottom: 0; }
+    .collection .collection-item.avatar .chip.green, .collection .collection-item.avatar .chip.blue {
+      color: #ffffff; }
+  .collection .collection-item.avatar .bold {
+    font-weight: bold; }
+  .collection .collection-item.avatar .copy:hover {
+    cursor: pointer; }
+  .collection .collection-item.avatar .secondary-content {
+    height: 100%;
+    top: 0 !important;
+    line-height: 6; }
+    .collection .collection-item.avatar .secondary-content i {
+      display: inline-flex;
+      vertical-align: middle;
+      margin-bottom: 3px; }
+
+.main {
+  transition: opacity 0.2s linear;
+  opacity: 0; }
 
 /*# sourceMappingURL=styles.css.map */
