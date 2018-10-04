@@ -97,7 +97,9 @@ function loadViewByUrl() {
     } else {
         logOutAndLoadLoginPage();
     }
-    $('.main').css('opacity', 1);
+    setTimeout(function () {
+        $('.main').css('opacity', 1);
+    }, 200);
 }
 
 function logOutAndLoadLoginPage() {

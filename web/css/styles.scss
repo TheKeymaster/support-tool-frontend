@@ -22,6 +22,10 @@ div#index-banner {
     transform: rotate(180deg);
 }
 
+.no-margin-top {
+    margin-top: 0 !important;
+}
+
 .collection .collection-item.avatar {
     list-style: none;
     padding-left: 170px;
@@ -76,6 +80,6 @@ div#index-banner {
 }
 
 .main {
-    transition: opacity 0.5s linear;
+    transition: opacity 0.2s linear;
     opacity: 0;
 }

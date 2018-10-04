@@ -20,6 +20,9 @@ div#index-banner {
 .logout-button {
   transform: rotate(180deg); }
 
+.no-margin-top {
+  margin-top: 0 !important; }
+
 .collection .collection-item.avatar {
   list-style: none;
   padding-left: 170px; }
@@ -57,7 +60,7 @@ div#index-banner {
       margin-bottom: 3px; }
 
 .main {
-  transition: opacity 0.5s linear;
+  transition: opacity 0.2s linear;
   opacity: 0; }
 
 /*# sourceMappingURL=styles.css.map */
