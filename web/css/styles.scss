@@ -24,17 +24,20 @@ div#index-banner {
 
 .collection .collection-item.avatar {
     list-style: none;
-    padding-left: 100px;
+    padding-left: 170px;
 
     .circle h4 {
-        margin-top: 12px;
+        margin-top: 3px;
         text-align: center;
         color: #ffffff;
     }
 
     .circle.light-green.lighten-1 {
-        width: 64px !important;
-        height: 64px !important;
+        width: auto;
+        padding: 0 16px;
+        border-radius: 32px;
+        height: 45px !important;
+        margin-top: 14px;
     }
 
     i.material-icons.copy.tooltipped {
@@ -73,6 +76,6 @@ div#index-banner {
 }
 
 .main {
-    transition: opacity 0.2s linear;
+    transition: opacity 0.5s linear;
     opacity: 0;
 }
