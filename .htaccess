@@ -7,6 +7,7 @@ RewriteCond %{SCRIPT_FILENAME} !-f
 # Redirect to all important endpoints.
 RewriteRule ^Tickets/(.*)$ index.php?authkey=$1
 RewriteRule ^Ticket/(.*)$ index.php?ticketid=$1
+RewriteRule ^Register/ index.php
 # Support adding /Links without an tailing slash still works.
 
 RewriteRule ^Ips ./web/endpoints/ips.php
