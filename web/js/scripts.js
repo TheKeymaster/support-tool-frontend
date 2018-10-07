@@ -133,7 +133,7 @@ function installRegisterFormEventHandlers() {
 /**
  * Installs EventHandlers for Tickets view.
  */
-function installEventHandlersForTicketView() {
+function installEventHandlersForTicketView(initEventHandlers = true) {
     var newTicketButton = document.getElementById('new-ticket');
 
     newTicketButton.addEventListener("click", function (e) {
@@ -141,57 +141,59 @@ function installEventHandlersForTicketView() {
 
         window.history.pushState(LOCATION_NEW_TICKET, 'Neues Ticket erstellen', PATHNAME_NEW_TICKET);
         $('.material-tooltip').remove();
-        loadNewTicketView();
+        loadNewTicketView(initEventHandlers);
     });
 }
 
-function loadNewTicketView() {
+function loadNewTicketView(initEventHandlers = true) {
     showLogoutButton();
     $.get(TEMPLATE_DESTINATION + 'newticket.mustache', function (template) {
         document.querySelector('.main').innerHTML = Mustache.render(template, {});
     });
     setTimeout(function () {
         $('textarea#body').characterCounter();
-        setEventHandlerForNewTicketView();
+        setEventHandlerForNewTicketView(initEventHandlers);
     }, 200);
 }
 
-function setEventHandlerForNewTicketView() {
-    var createNewTicketForm = document.getElementById('createTicket');
-    createNewTicketForm.action = CREATE_NEW_TICKET_ENDPOINT;
+function setEventHandlerForNewTicketView(initEventHandlers = true) {
+    if (initEventHandlers) {
+        var createNewTicketForm = document.getElementById('createTicket');
+        createNewTicketForm.action = CREATE_NEW_TICKET_ENDPOINT;
 
-    createNewTicketForm.addEventListener("submit", function (e) {
-        e.preventDefault();
+        createNewTicketForm.addEventListener("submit", function (e) {
+            e.preventDefault();
 
-        var xhr = new XMLHttpRequest();
-        var url = CREATE_NEW_TICKET_ENDPOINT;
-        var params = getDataFromForm(createNewTicketForm, e) + "&authkey=" + localStorage.getItem('authkey');
+            var xhr = new XMLHttpRequest();
+            var url = CREATE_NEW_TICKET_ENDPOINT;
+            var params = getDataFromForm(createNewTicketForm, e) + "&authkey=" + localStorage.getItem('authkey');
 
-        xhr.open('POST', url, true);
+            xhr.open('POST', url, true);
 
-        //Send the proper header information along with the request.
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            //Send the proper header information along with the request.
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                var data = JSON.parse(xhr.responseText);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var data = JSON.parse(xhr.responseText);
 
-                if (data.result == true) {
-                    window.history.pushState(LOCATION_TICKETS, 'Ticketliste', PATHNAME_TICKETS);
-                    M.toast({html: 'Das Ticket wurde erfolgreich erstellt!', classes: 'rounded'});
-                } else {
-                    M.toast({html: 'Etwas ist beim erstellen deines Tickets schief gelaufen!', classes: 'rounded'});
+                    if (data.result == true) {
+                        window.history.pushState(LOCATION_TICKETS, 'Ticketliste', PATHNAME_TICKETS);
+                        M.toast({html: 'Das Ticket wurde erfolgreich erstellt!', classes: 'rounded'});
+                    } else {
+                        M.toast({html: 'Etwas ist beim erstellen deines Tickets schief gelaufen!', classes: 'rounded'});
+                    }
                 }
-            }
-        };
-        xhr.send(params);
-    });
+            };
+            xhr.send(params);
+        });
 
-    $('#body').keydown(function (e) {
-        if ((e.ctrlKey || e.metaKey) && (e.keyCode == 13 || e.keyCode == 10)) {
-            jQuery('button.btn-large.waves-effect.waves-light.orange').click();
-        }
-    });
+        $('#body').keydown(function (e) {
+            if ((e.ctrlKey || e.metaKey) && (e.keyCode == 13 || e.keyCode == 10)) {
+                jQuery('button.btn-large.waves-effect.waves-light.orange').click();
+            }
+        });
+    }
 }
 
 /**
@@ -275,13 +277,16 @@ function loadViewByUrl() {
     }, 200);
 }
 
-function loadRegister() {
+function loadRegister(initEventHandlers = true) {
     $.get(TEMPLATE_DESTINATION + 'registerview.mustache', function (template) {
         document.querySelector('.main').innerHTML = Mustache.render(template, {});
     });
-    setTimeout(function () {
-        installRegisterFormEventHandlers();
-    }, 200);
+
+    if (initEventHandlers === true) {
+        setTimeout(function () {
+            installRegisterFormEventHandlers();
+        }, 200);
+    }
 }
 
 /**
@@ -363,7 +368,7 @@ function loadTicketsView() {
         xhr.send();
     });
     setTimeout(function () {
-        installEventHandlersForTicketView();
+        installEventHandlersForTicketView(false);
     }, 200);
 
 }
