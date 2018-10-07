@@ -3,9 +3,14 @@
         <h1 class="header center orange-text login">Einloggen</h1>
         <form method="post" id="loginForm" action="">
             <div class="row center">
+                <p>Logge dich ein um deine Tickets einzusehen oder neue zu erstellen. Unsere Supportmitarbeiter werden
+                    dir immer zur Verfügung stehen. <br>Du erhältst stets <strong>innerhalb der nächsten 24 Stunden</strong> eine
+                    Erstantwort.</p>
+            </div>
+            <div class="row center">
                 <div class="input-field">
                     <i class="material-icons prefix">mail</i>
-                    <input id="email" type="email" class="validate" name="email">
+                    <input id="email" type="email" class="validate" name="email" required>
                     <label for="email">E-Mail Adresse</label>
                     <span class="helper-text" data-error="Bitte gib eine gültige E-Mail ein."
                           data-success="E-Mail ist gültig."></span>
@@ -14,7 +19,7 @@
             <div class="row center">
                 <div class="input-field">
                     <i class="material-icons prefix">vpn_key</i>
-                    <input id="password" type="password" class="validate" name="password">
+                    <input id="password" type="password" class="validate" name="password" required>
                     <label for="password">Passwort</label>
                     <span class="helper-text" data-error="Bitte gib ein gültiges Passwort ein."
                           data-success="Passwort ist gültig."></span>

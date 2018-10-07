@@ -8,6 +8,8 @@ const TEMPLATE_DESTINATION = '/web/templates/views/';
 
 // ENDPOINTS
 const VALIDATE_USER_ENDPOINT = API_URL + POST_DIR + "uservalidate.php";
+const CREATE_USER_ENDPOINT = API_URL + POST_DIR + "createuser.php";
+const CREATE_NEW_TICKET_ENDPOINT = API_URL + POST_DIR + "createticket.php";
 const TICKETS_ENDPOINT = API_URL + GET_DIR + "tickets.php";
 const USER_ENDPOINT = API_URL + GET_DIR + "user.php";
 
@@ -15,11 +17,13 @@ const USER_ENDPOINT = API_URL + GET_DIR + "user.php";
 const LOCATION_REGISTER = 'Register';
 const LOCATION_TICKETS = 'Tickets';
 const LOCATION_LOGIN = 'Login';
+const LOCATION_NEW_TICKET = 'New';
 
 // PATH LOCATIONS
 const PATHNAME_LOGIN = '/';
 const PATHNAME_TICKETS = '/Tickets/';
 const PATHNAME_REGISTER = '/Register/';
+const PATHNAME_NEW_TICKET = '/New/';
 
 /** @var {Element} logoutButton */
 var logoutButton;
@@ -85,6 +89,112 @@ function installLoginFormEventHandlers() {
 }
 
 /**
+ * Installs EventHandlers for Register Form.
+ */
+function installRegisterFormEventHandlers() {
+    var registerForm = document.getElementById('registerForm');
+    registerForm.action = CREATE_USER_ENDPOINT;
+
+    registerForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        var password = e.currentTarget[3].value;
+        var repeatPassword = e.currentTarget[4].value;
+        if (password !== repeatPassword) {
+            M.toast({html: 'Bitte überprüfe deine Passwörter auf Gleichheit!', classes: 'rounded'});
+        } else {
+
+            var xhr = new XMLHttpRequest();
+            var url = CREATE_USER_ENDPOINT;
+            var params = getDataFromForm(registerForm, e);
+
+            xhr.open('POST', url, true);
+
+            //Send the proper header information along with the request.
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var data = JSON.parse(xhr.responseText);
+
+                    if (data.result == true) {
+                        window.history.pushState(LOCATION_LOGIN, 'Login', PATHNAME_LOGIN);
+                        M.toast({html: 'Du hast dich erfolgreich registriert!', classes: 'rounded'});
+                    } else {
+                        M.toast({html: 'Bitte überprüfe deine Registrierdaten!', classes: 'rounded'});
+                    }
+                }
+            };
+            xhr.send(params);
+        }
+    });
+}
+
+/**
+ * Installs EventHandlers for Tickets view.
+ */
+function installEventHandlersForTicketView() {
+    var newTicketButton = document.getElementById('new-ticket');
+
+    newTicketButton.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        window.history.pushState(LOCATION_NEW_TICKET, 'Neues Ticket erstellen', PATHNAME_NEW_TICKET);
+        $('.material-tooltip').remove();
+        loadNewTicketView();
+    });
+}
+
+function loadNewTicketView() {
+    showLogoutButton();
+    $.get(TEMPLATE_DESTINATION + 'newticket.mustache', function (template) {
+        document.querySelector('.main').innerHTML = Mustache.render(template, {});
+    });
+    setTimeout(function () {
+        $('textarea#body').characterCounter();
+        setEventHandlerForNewTicketView();
+    }, 200);
+}
+
+function setEventHandlerForNewTicketView() {
+    var createNewTicketForm = document.getElementById('createTicket');
+    createNewTicketForm.action = CREATE_NEW_TICKET_ENDPOINT;
+
+    createNewTicketForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        var xhr = new XMLHttpRequest();
+        var url = CREATE_NEW_TICKET_ENDPOINT;
+        var params = getDataFromForm(createNewTicketForm, e) + "&authkey=" + localStorage.getItem('authkey');
+
+        xhr.open('POST', url, true);
+
+        //Send the proper header information along with the request.
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var data = JSON.parse(xhr.responseText);
+
+                if (data.result == true) {
+                    window.history.pushState(LOCATION_TICKETS, 'Ticketliste', PATHNAME_TICKETS);
+                    M.toast({html: 'Das Ticket wurde erfolgreich erstellt!', classes: 'rounded'});
+                } else {
+                    M.toast({html: 'Etwas ist beim erstellen deines Tickets schief gelaufen!', classes: 'rounded'});
+                }
+            }
+        };
+        xhr.send(params);
+    });
+
+    $('#body').keydown(function (e) {
+        if ((e.ctrlKey || e.metaKey) && (e.keyCode == 13 || e.keyCode == 10)) {
+            jQuery('button.btn-large.waves-effect.waves-light.orange').click();
+        }
+    });
+}
+
+/**
  * Internal function to get data from form.
  *
  * @param form
@@ -104,7 +214,10 @@ function getDataFromForm(form, e) {
             if (localStorage.getItem('authkey') !== null) {
                 switch (state) {
                     case LOCATION_TICKETS:
-                        loadTicketView();
+                        loadTicketsView();
+                        break;
+                    case LOCATION_NEW_TICKET:
+                        loadNewTicketView();
                         break;
                 }
             } else {
@@ -130,15 +243,19 @@ function loadViewByUrl() {
     if (localStorage.getItem('authkey') !== null) {
         switch (window.location.pathname) {
             case PATHNAME_TICKETS:
-                loadTicketView();
+                loadTicketsView();
                 break;
             case PATHNAME_LOGIN:
                 window.history.replaceState(LOCATION_TICKETS, 'Ticketliste', PATHNAME_TICKETS);
-                loadTicketView();
+                loadTicketsView();
+                break;
+            case PATHNAME_NEW_TICKET:
+                window.history.replaceState(LOCATION_NEW_TICKET, 'Neues Ticket erstellen', PATHNAME_NEW_TICKET);
+                loadNewTicketView();
                 break;
             default:
                 window.history.replaceState(LOCATION_TICKETS, 'Ticketliste', PATHNAME_TICKETS);
-                loadTicketView();
+                loadTicketsView();
                 break;
         }
     } else {
@@ -162,6 +279,9 @@ function loadRegister() {
     $.get(TEMPLATE_DESTINATION + 'registerview.mustache', function (template) {
         document.querySelector('.main').innerHTML = Mustache.render(template, {});
     });
+    setTimeout(function () {
+        installRegisterFormEventHandlers();
+    }, 200);
 }
 
 /**
@@ -185,14 +305,18 @@ function logOutAndLoadLoginPage(initEventHandlers = true) {
     logoutButton.css('display', 'none');
 }
 
-/**
- * Loads the view where all tickets of the current user can be seen.
- */
-function loadTicketView() {
+function showLogoutButton() {
     logoutButton.css('display', 'block');
     logoutButton.click(function () {
         logOutAndLoadLoginPage(false);
     });
+}
+
+/**
+ * Loads the view where all tickets of the current user can be seen.
+ */
+function loadTicketsView() {
+    showLogoutButton();
     $.get(TEMPLATE_DESTINATION + 'ticketview.mustache', function (template) {
         var xhr = new XMLHttpRequest();
         var params = 'authkey=' + localStorage.getItem('authkey');
@@ -204,6 +328,7 @@ function loadTicketView() {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 var tickets = JSON.parse(xhr.responseText);
 
+                var count = 0;
                 for (var ticket in tickets) {
 
                     var userData = [];
@@ -228,12 +353,19 @@ function loadTicketView() {
                             tickets[ticket]['color'] = "";
                             break;
                     }
+                    count++;
                 }
-                document.querySelector('.main').innerHTML = Mustache.render(template, {tickets: tickets});
+
+                var hasTickets = count === 0;
+                document.querySelector('.main').innerHTML = Mustache.render(template, {tickets: tickets, hasTickets: hasTickets});
             }
         };
         xhr.send();
     });
+    setTimeout(function () {
+        installEventHandlersForTicketView();
+    }, 200);
+
 }
 
 /**

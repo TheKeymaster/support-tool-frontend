@@ -1,5 +1,10 @@
 <h1 class="header center orange-text">Tickets</h1>
 <div class="card no-margin-top">
+    {{#hasTickets}}
+        <div class="row center no-tickets">
+            <h6>Du hast bisher noch keine Tickets erstellt.</h6>
+        </div>
+    {{/hasTickets}}
     <div class="collection">
         {{#tickets}}
             <li class="collection-item avatar">
@@ -18,4 +23,9 @@
             </li>
         {{/tickets}}
     </div>
+</div>
+<div id="new-ticket" class="fixed-action-btn direction-bottom tooltipped" data-position="left" data-tooltip="Neues Ticket erstellen">
+    <a class="btn-floating btn-large red">
+        <i class="large material-icons">add</i>
+    </a>
 </div>

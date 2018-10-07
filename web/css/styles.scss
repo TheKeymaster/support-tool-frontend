@@ -12,7 +12,7 @@
 }
 div .card {
     width: 80%;
-    margin: 7% auto;
+    margin: 3% auto;
 }
 div#index-banner {
     width: 50%;
@@ -91,4 +91,8 @@ div#index-banner {
     transition: opacity 0.2s linear;
     opacity: 0;
     min-height: 36em;
+}
+
+.no-tickets {
+    padding-top: 10px;
 }
