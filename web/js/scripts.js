@@ -5,6 +5,7 @@ const API_URL = "http://api.dom.olo/src/api/Endpoints/";
 const GET_DIR = "get/";
 const POST_DIR = "post/";
 const TEMPLATE_DESTINATION = '/web/templates/views/';
+const SNIPPET_DESTINATION = '/web/templates/snippets/';
 
 // ENDPOINTS
 const VALIDATE_USER_ENDPOINT = API_URL + POST_DIR + "uservalidate.php";
@@ -163,6 +164,13 @@ function setEventHandlerForNewTicketView(initEventHandlers = true) {
 
         createNewTicketForm.addEventListener("submit", function (e) {
             e.preventDefault();
+            var loader;
+            $.get(SNIPPET_DESTINATION + 'loader.mustache', function (template) {
+                loader = Mustache.render(template, {});
+            });
+            setTimeout(function () {
+                M.toast({html: 'Das Ticket wird soeben erstellt...  ' + loader, classes: 'rounded'});
+            }, 200);
 
             var xhr = new XMLHttpRequest();
             var url = CREATE_NEW_TICKET_ENDPOINT;
@@ -179,6 +187,7 @@ function setEventHandlerForNewTicketView(initEventHandlers = true) {
 
                     if (data.result == true) {
                         window.history.pushState(LOCATION_TICKETS, 'Ticketliste', PATHNAME_TICKETS);
+                        jQuery('.toast.rounded').remove();
                         M.toast({html: 'Das Ticket wurde erfolgreich erstellt!', classes: 'rounded'});
                     } else {
                         M.toast({html: 'Etwas ist beim erstellen deines Tickets schief gelaufen!', classes: 'rounded'});
