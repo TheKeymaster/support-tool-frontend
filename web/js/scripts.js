@@ -169,7 +169,7 @@ function setEventHandlerForNewTicketView(initEventHandlers = true) {
                 loader = Mustache.render(template, {});
             });
             setTimeout(function () {
-                M.toast({html: 'Das Ticket wird soeben erstellt...  ' + loader, classes: 'rounded'});
+                M.toast({html: '<div class="loading-toast">Das Ticket wird erstellt...</div>' + loader, classes: 'rounded', displayLength: 150000});
             }, 200);
 
             var xhr = new XMLHttpRequest();
@@ -185,9 +185,9 @@ function setEventHandlerForNewTicketView(initEventHandlers = true) {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     var data = JSON.parse(xhr.responseText);
 
+                    jQuery('.toast.rounded').remove();
                     if (data.result == true) {
                         window.history.pushState(LOCATION_TICKETS, 'Ticketliste', PATHNAME_TICKETS);
-                        jQuery('.toast.rounded').remove();
                         M.toast({html: 'Das Ticket wurde erfolgreich erstellt!', classes: 'rounded'});
                     } else {
                         M.toast({html: 'Etwas ist beim erstellen deines Tickets schief gelaufen!', classes: 'rounded'});
