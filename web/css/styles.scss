@@ -105,3 +105,13 @@ div#index-banner {
 .loading-toast {
     margin-right: 10px;
 }
+
+input.white-text::placeholder {
+    color: white;
+}
+
+input.white-text {
+    border-bottom: 1px solid #fff !important;
+    color: white;
+    margin-top: 6px !important;
+}

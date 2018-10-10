@@ -29,11 +29,15 @@ const PATHNAME_NEW_TICKET = '/New/';
 /** @var {Element} logoutButton */
 var logoutButton;
 
+/** @var {Element} ticketSearch */
+var ticketSerach;
+
 /**
  * Initializes important things on first page load.
  */
 function init() {
     logoutButton = $('.logout-button');
+    ticketSearch = $('input[type="search"]');
 
     window.onpopstate = function () {
         loadViewByUrl();
@@ -164,6 +168,7 @@ function setEventHandlerForNewTicketView(initEventHandlers = true) {
 
         createNewTicketForm.addEventListener("submit", function (e) {
             e.preventDefault();
+            jQuery('form button').addClass('disabled');
             var loader;
             $.get(SNIPPET_DESTINATION + 'loader.mustache', function (template) {
                 loader = Mustache.render(template, {});
@@ -317,6 +322,7 @@ function logOutAndLoadLoginPage(initEventHandlers = true) {
 
     localStorage.removeItem('authkey');
     logoutButton.css('display', 'none');
+    ticketSearch.css('display', 'none');
 }
 
 function showLogoutButton() {
@@ -324,6 +330,8 @@ function showLogoutButton() {
     logoutButton.click(function () {
         logOutAndLoadLoginPage(false);
     });
+
+    ticketSearch.css('display', 'block');
 }
 
 /**
