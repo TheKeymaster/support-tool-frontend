@@ -115,3 +115,13 @@ input.white-text {
     color: white;
     margin-top: 6px !important;
 }
+
+h1.header.center.orange-text {
+    margin-top: 46px !important;
+}
+
+.dropdown-content li>a, .dropdown-content li>span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: hidden;
+}

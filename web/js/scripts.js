@@ -19,18 +19,19 @@ const LOCATION_REGISTER = 'Register';
 const LOCATION_TICKETS = 'Tickets';
 const LOCATION_LOGIN = 'Login';
 const LOCATION_NEW_TICKET = 'New';
+const LOCATION_TICKET = 'Ticket';
 
 // PATH LOCATIONS
 const PATHNAME_LOGIN = '/';
 const PATHNAME_TICKETS = '/Tickets/';
 const PATHNAME_REGISTER = '/Register/';
 const PATHNAME_NEW_TICKET = '/New/';
+const PATHNAME_TICKET = '/Ticket/';
 
 /** @var {Element} logoutButton */
 var logoutButton;
 
-/** @var {Element} ticketSearch */
-var ticketSerach;
+var searchEventHandlersInitialized = false;
 
 /**
  * Initializes important things on first page load.
@@ -148,10 +149,60 @@ function installEventHandlersForTicketView(initEventHandlers = true) {
         $('.material-tooltip').remove();
         loadNewTicketView(initEventHandlers);
     });
+
+    var searchInput = jQuery('input.white-text');
+
+    searchInput.keyup(function( event ) {
+        var xhr = new XMLHttpRequest();
+        var params = 'authkey=' + localStorage.getItem('authkey') + '&query=' + searchInput.val();
+        var url = TICKETS_ENDPOINT + '?' + params;
+
+        xhr.open('GET', url, false);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var results = JSON.parse(xhr.responseText);
+                console.log(results);
+
+                var autocompleteElement =  document.querySelector('ul.autocomplete-content.dropdown-content');
+                var ticketsHtml = '';
+                results.forEach(function (result) {
+                    $.get(SNIPPET_DESTINATION + 'ticketresults.mustache', function (template) {
+                        ticketsHtml = ticketsHtml + Mustache.render(template, {id: result.id, title: result.title});
+                    });
+                });
+                setTimeout(function () {
+                    if (ticketsHtml === '') {
+                        autocompleteElement.innerHTML = '<li><span>Keine Ergebnisse</span></li>';
+                    } else if (searchInput.val().length === 0) {
+                        autocompleteElement.innerHTML = '';
+                    } else {
+                        autocompleteElement.innerHTML = ticketsHtml;
+                    }
+
+                    initEventHandlersForTicketResultsInSearch();
+                }, 200);
+            }
+        };
+        xhr.send();
+    });
+}
+
+function initEventHandlersForTicketResultsInSearch() {
+    var results = jQuery('.dropdown-content li > a, .dropdown-content li > span');
+
+    results.each(function () {
+        var id = jQuery(this).closest('span').attr('id');
+        this.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            window.history.pushState(LOCATION_TICKET, 'Ticket ' + id, PATHNAME_TICKET + id);
+        });
+    });
 }
 
 function loadNewTicketView(initEventHandlers = true) {
-    showLogoutButton();
+    showLoggedInElements();
     $.get(TEMPLATE_DESTINATION + 'newticket.mustache', function (template) {
         document.querySelector('.main').innerHTML = Mustache.render(template, {});
     });
@@ -325,7 +376,7 @@ function logOutAndLoadLoginPage(initEventHandlers = true) {
     ticketSearch.css('display', 'none');
 }
 
-function showLogoutButton() {
+function showLoggedInElements() {
     logoutButton.css('display', 'block');
     logoutButton.click(function () {
         logOutAndLoadLoginPage(false);
@@ -338,7 +389,7 @@ function showLogoutButton() {
  * Loads the view where all tickets of the current user can be seen.
  */
 function loadTicketsView() {
-    showLogoutButton();
+    showLoggedInElements();
     $.get(TEMPLATE_DESTINATION + 'ticketview.mustache', function (template) {
         var xhr = new XMLHttpRequest();
         var params = 'authkey=' + localStorage.getItem('authkey');
