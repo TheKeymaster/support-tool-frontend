@@ -53,16 +53,6 @@ div#index-banner {
         font-weight: bold;
     }
 
-    .chip {
-        height: 20px;
-        line-height: 20px;
-        margin-top: 5px;
-        margin-bottom: 0;
-        &.red, &.blue {
-            color: #ffffff;
-        }
-    }
-
     .createdby {
         display: inline;
     }
@@ -84,6 +74,57 @@ div#index-banner {
             vertical-align: middle;
             margin-bottom: 3px;
         }
+    }
+}
+
+
+.chip {
+    height: 20px;
+    line-height: 20px;
+    margin-top: 5px;
+    margin-bottom: 0;
+    &.red, &.blue {
+        color: #ffffff;
+    }
+}
+
+.chip-ticketdetail {
+    margin: 0 auto 15px auto;
+    display: block;
+    width: 100px;
+    text-align: center;
+}
+
+.chip-role {
+    margin: 0 auto 15px auto;
+    display: block;
+    width: 145px;
+    text-align: center;
+}
+
+img.responsive-img {
+    max-width: 80px;
+}
+
+.helper-text {
+    position: relative;
+    min-height: 18px;
+    display: block;
+    font-size: 14px;
+    color: rgba(0,0,0,0.54);
+
+    &.small {
+        font-size: 12px;
+    }
+}
+
+.designer {
+    width: 40px;
+    height: 40px;
+    margin: 10px auto;
+
+    &:hover {
+        cursor: pointer;
     }
 }
 

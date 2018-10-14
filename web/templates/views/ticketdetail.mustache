@@ -1,0 +1,52 @@
+<div class="card">
+    <div class="collection">
+        <h3 class="header center orange-text">#{{ticketid}} {{title}}</h3>
+        <div class="chip chip-ticketdetail {{color}}">
+            {{status}}
+        </div>
+        <div class="card-content card">
+            <form method="post" id="createMessage" action="">
+                <div class="row center">
+                    <div class="input-field">
+                        <i class="material-icons prefix">edit</i>
+                        <textarea id="body" class="materialize-textarea" minlength="10" data-length="1000" name="body"></textarea>
+                        <label for="body">Antworten Sie hier</label>
+                    </div>
+                </div>
+                <div class="row center">
+                    <button class="btn-large waves-effect waves-light orange" type="submit" name="action">Nachricht hinzufügen<i
+                            class="material-icons prefix right">add</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="card-content">
+        {{#messages}}
+            <div class="col s12 m8 offset-m2 l6 offset-l3">
+                <div class="card-panel {{class}} z-depth-1">
+                    <span style="float: right;">verfasst am {{day}}, den {{date}} um {{time}}</span>
+                    <div class="row valign-wrapper">
+                        <div class="col s3 center">
+                            <img src="{{imageurl}}" alt="" class="circle responsive-img"><br>
+                            <span>{{createdby}}</span><br>
+                            {{#is-support}}
+                                <div class="chip chip-role">
+                                    {{role}}
+                                </div>
+                            {{/is-support}}
+                        </div>
+                        <div class="col s10">
+                          <span class="black-text" style="white-space: pre-line">{{body}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/messages}}
+        </div>
+    </div>
+</div>
+<div id="new-ticket" class="fixed-action-btn direction-bottom tooltipped" data-position="left" data-tooltip="Neues Ticket erstellen">
+    <a class="btn-floating btn-large red">
+        <i class="large material-icons">add</i>
+    </a>
+</div>
