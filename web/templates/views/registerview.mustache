@@ -1,0 +1,55 @@
+<div class="section no-pad-bot card" id="index-banner">
+    <div class="container">
+        <h1 class="header center orange-text">Registrieren</h1>
+        <form method="post" id="registerForm" action="">
+            <div class="row center">
+                <p>Registriere dich hier um einen neuen Account zu erstellen. Mit diesem Account kannst du uns jederzeit
+                    bei technischen Schwierigkeiten kontaktieren. <br>Du erhältst stets <strong>innerhalb der nächsten 24 Stunden</strong> eine
+                    Erstantwort.</p>
+            </div>
+            <div class="row center">
+                <div class="input-field">
+                    <i class="material-icons prefix">person</i>
+                    <input id="firstname" type="text" class="validate" name="firstname" required>
+                    <label for="firstname">Vorname</label>
+                    <span class="helper-text" data-error="Bitte gib einen gültigen Vornamen ein."
+                          data-success="Vorname ist gültig."></span>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">person</i>
+                    <input id="lastname" type="text" class="validate" name="lastname" required>
+                    <label for="lastname">Nachname</label>
+                    <span class="helper-text" data-error="Bitte gib einen gültigen Nachnamen ein."
+                          data-success="Nachname ist gültig."></span>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">mail</i>
+                    <input id="email" type="email" class="validate" name="email" required>
+                    <label for="email">E-Mail Adresse</label>
+                    <span class="helper-text" data-error="Bitte gib eine gültige E-Mail ein."
+                          data-success="E-Mail ist gültig."></span>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <input id="passwordRegister1" type="password" class="validate" name="password" required minlength="5">
+                    <label for="passwordRegister1">Passwort</label>
+                    <span class="helper-text" data-error="Bitte gib ein gültiges Passwort ein. Die Minimallänge ist 5."
+                          data-success="Passwort ist gültig."></span>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <input id="passwordRegister2" type="password" class="validate" name="password_validate" required minlength="5">
+                    <label for="passwordRegister2">Passwort wiederholen</label>
+                    <span class="helper-text" data-error="Bitte gib ein gültiges Passwort ein. Die Minimallänge ist 5."
+                          data-success="Passwort ist gültig."></span>
+                </div>
+            </div>
+            <div class="row center">
+                <button class="btn-large waves-effect waves-light orange" type="submit" name="action">Registrieren<i
+                        class="material-icons prefix right">person_add</i>
+                </button>
+            </div>
+        </form>
+        <br><br>
+    </div>
+</div>

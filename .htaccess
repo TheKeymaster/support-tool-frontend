@@ -7,6 +7,7 @@ RewriteCond %{SCRIPT_FILENAME} !-f
 # Redirect to all important endpoints.
 RewriteRule ^Tickets/(.*)$ index.php?authkey=$1
 RewriteRule ^Ticket/(.*)$ index.php?ticketid=$1
+RewriteRule ^Register/ index.php
 # Support adding /Links without an tailing slash still works.
 
 RewriteRule ^Ips ./web/endpoints/ips.php
@@ -14,6 +15,6 @@ RewriteRule ^Login ./web/endpoints/login.php
 RewriteRule ^Food ./web/endpoints/food.php
 RewriteRule ^Contributors ./web/other/contributors.txt
 
-# Do a redirect to the Dashboard if a HTTP 404 occours.
+# Do a redirect to the Login Page if a HTTP 404 occours.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . / [L,R=301]

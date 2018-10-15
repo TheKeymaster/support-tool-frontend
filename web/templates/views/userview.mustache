@@ -1,0 +1,42 @@
+<div class="section no-pad-bot card" id="index-banner">
+    <div class="container">
+        <h3 class="header center orange-text login">Benutzereinstellungen</h3>
+        <form method="post" id="formNotInUse" action="">
+            <div class="row center">
+                <p>Hier kannst du deine Benutzerspezifischen Einstellungen setzen.</p>
+            </div>
+            <div class="row center">
+                <span class="helper-text">Profilbild</span>
+                <img class="circle responsive-img" src="{{imageurl}}">
+                <div class="row center">
+                    <a target="_blank" href="https://de.gravatar.com/">Das Profilbild kann auf Gravatar geändert werden!</a>
+                </div>
+                <div class="row center">
+                    <span class="helper-text">Benutzerdefiniertes Design</span>
+                    <span class="helper-text small">Farbe der Navigation</span>
+                    <div class="designer center"></div>
+                    <a class="reset-color" href="#!">Zurücksetzen auf Standardwert</a>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">mail</i>
+                    <input disabled id="email" type="email" class="validate" name="email">
+                    <label for="email">{{email}}</label>
+                    <span class="helper-text" style="text-align: left;">E-Mail (nicht editierbar)</span>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">person</i>
+                    <input disabled id="firstname" type="text" class="validate" name="firstname">
+                    <label for="firstname">{{firstname}}</label>
+                    <span class="helper-text" style="text-align: left;">Vorname (nicht editierbar)</span>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">person</i>
+                    <input disabled id="lastname" type="text" class="validate" name="lastname">
+                    <label for="lastname">{{lastname}}</label>
+                    <span class="helper-text" style="text-align: left;">Nachname (nicht editierbar)</span>
+                </div>
+            </div>
+        </form>
+        <br>
+    </div>
+</div>
