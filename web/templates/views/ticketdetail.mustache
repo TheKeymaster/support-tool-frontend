@@ -9,9 +9,13 @@
                 <div class="row center">
                     <div class="input-field">
                         <i class="material-icons prefix">edit</i>
-                        <textarea id="body" class="materialize-textarea" minlength="10" data-length="1000" name="body"></textarea>
+                        <textarea id="body" class="materialize-textarea" minlength="10" data-length="1000" name="body" required></textarea>
                         <label for="body">Antworten Sie hier</label>
                     </div>
+                    <label class="internal-comment" style="display: none;">
+                        <input type="checkbox" class="filled-in checkbox-orange" name="isinternal" value="1" />
+                        <span>Internes Kommentar</span>
+                    </label>
                 </div>
                 <div class="row center">
                     <button class="btn-large waves-effect waves-light orange" type="submit" name="action">Nachricht hinzufügen<i

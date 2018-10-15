@@ -81,6 +81,7 @@ function init() {
     })(jQuery);
 
     loadViewByUrl(true);
+    showBody();
 
     window.onresize = function () {
         alignFooterByHeight();
@@ -457,7 +458,7 @@ function loadUserView(initEventHandlers = true) {
     setTimeout(function () {
         installColorPicker(initEventHandlers);
         installEventHandlersForTicketView(false);
-    }, 200);
+    }, 500);
 }
 
 function loadRegister(initEventHandlers = true) {
@@ -499,6 +500,11 @@ function logOutAndLoadLoginPage(initEventHandlers = true) {
 }
 
 function showLoggedInElements() {
+    var requester = [];
+    getUserById('', function (data) {
+        requester = data[0]
+    });
+
     logoutButton.css('display', 'block');
     logoutButton.click(function () {
         logOutAndLoadLoginPage(false);
@@ -511,7 +517,13 @@ function showLoggedInElements() {
         });
     }, 200);
 
-    ticketSearch.css('display', 'block');
+    console.log(parseInt(requester['role']));
+    if (parseInt(requester['role']) > 1) {
+        ticketSearch.css('display', 'block');
+        setTimeout(function () {
+            jQuery('.internal-comment').css('display', 'block');
+        }, 200);
+    }
 }
 
 /**
@@ -578,7 +590,7 @@ function loadTicketsView() {
     });
     setTimeout(function () {
         installEventHandlersForTicketView(false);
-    }, 200);
+    }, 500);
 
 }
 
@@ -655,7 +667,7 @@ function loadTicketDetailView() {
     setTimeout(function () {
         installEventHandlersForSendMessage(ticketid);
         installEventHandlersForTicketView(false);
-    }, 200);
+    }, 500);
 
 }
 
@@ -673,14 +685,12 @@ function installEventHandlersForSendMessage(ticketid) {
         var loader;
         $.get(SNIPPET_DESTINATION + 'loader.mustache', function (template) {
             loader = Mustache.render(template, {});
-        });
-        setTimeout(function () {
             M.toast({
                 html: '<div class="loading-toast">Die Nachricht wird gesendet...</div>' + loader,
                 classes: 'rounded',
                 displayLength: 150000
             });
-        }, 200);
+        });
 
         var xhr = new XMLHttpRequest();
         var url = CREATE_MESSAGE_ENDPOINT;
@@ -763,6 +773,13 @@ function installColorPicker(initEventHandlers = true) {
             chosenColor = color.rgbaString;
             parent.style.background = chosenColor;
         };
+
+        jQuery('.reset-color').click(function () {
+            nav.attr('style', 'background-color:');
+            saveColorInLocalStorage(null);
+            parent.style.background = 'cornflowerblue';
+        });
+
         colorPickerInitialized = true;
     }
 }
@@ -777,6 +794,10 @@ function setColorByLocalStorage() {
         var property = (navigationColor + ' !important');
         jQuery('nav.light-green.lighten-1').attr('style', 'background-color:' + property);
     }
+}
+
+function showBody() {
+    jQuery('body').css('opacity', '1');
 }
 
 init();

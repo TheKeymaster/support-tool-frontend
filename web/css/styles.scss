@@ -1,3 +1,9 @@
+body {
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+}
+
 .light-green.lighten-1 {
     background-color: cornflowerblue !important;
 }
@@ -165,4 +171,14 @@ h1.header.center.orange-text {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow-x: hidden;
+}
+
+[type="checkbox"].filled-in:checked+span:not(.lever):after {
+    border: 2px solid #f3954b !important;
+    background-color: #fff !important;
+}
+
+[type="checkbox"]:checked+span:not(.lever):before {
+    border-right: 2px solid #f3954b !important;
+    border-bottom: 2px solid #f3954b !important;
 }
