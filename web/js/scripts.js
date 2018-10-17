@@ -318,6 +318,9 @@ function setEventHandlerForNewTicketView(initEventHandlers = true) {
                     if (data.result == true) {
                         window.history.pushState(LOCATION_TICKETS, 'Ticketliste', PATHNAME_TICKETS);
                         M.toast({html: 'Das Ticket wurde erfolgreich erstellt!', classes: 'rounded'});
+                        setTimeout(function () {
+                            alignFooterByHeight();
+                        }, 500);
                     } else {
                         M.toast({html: 'Etwas ist beim erstellen deines Tickets schief gelaufen!', classes: 'rounded'});
                     }
@@ -376,7 +379,9 @@ function getDataFromForm(form, e) {
                         break;
                 }
             }
-            alignFooterByHeight();
+            setTimeout(function () {
+                alignFooterByHeight();
+            }, 200);
             console.log(state);
         }
         return pushState.apply(history, arguments);
@@ -549,17 +554,9 @@ function loadTicketsView() {
                 var count = 0;
                 for (var ticket in tickets) {
 
-                    var userData = [];
-                    getUserById(tickets[ticket]['createdby'], function (data) {
-                        userData = data[0];
-                    });
-
-                    if (userData['email'] === requester['email']) {
+                    if (requester['role'] === 1) {
                         tickets[ticket]['firstname'] = 'Ihnen';
                         tickets[ticket]['lastname'] = '';
-                    } else {
-                        tickets[ticket]['firstname'] = userData['firstname'];
-                        tickets[ticket]['lastname'] = userData['lastname'];
                     }
 
                     switch (tickets[ticket]['status']) {
@@ -665,6 +662,7 @@ function loadTicketDetailView() {
         xhr.send();
     });
     setTimeout(function () {
+        showLoggedInElements();
         installEventHandlersForSendMessage(ticketid);
         installEventHandlersForTicketView(false);
     }, 500);
